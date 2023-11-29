@@ -34,6 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300&display=swap" rel="stylesheet">
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 {{-- {!! htmlScriptTagJsApi() !!} --}}
 </head>
 
@@ -158,7 +159,7 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-12">
-					<img  src="{{URL::asset('./assets//img//paypal-buynow.png')}}" alt="AFR" srcset="">
+					<img  src="{{URL::asset('../assets//img//paypal-buynow.png')}}" alt="AFR" srcset="">
 				</div>
 				<p> <i class="fa fa-copyright"></i> {{date('Y')}} Afghan-Recharge - All Rights Reserved, and powered by <a href="http://pit.af">PIT</a> </p>
 

@@ -8,6 +8,8 @@ use App\Models\TopUp;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use ReCaptcha\ReCaptcha;
+
 
 class topUpController extends Controller
 {
@@ -103,7 +105,13 @@ class topUpController extends Controller
             'g-recaptcha-response' => 'recaptcha',//recaptcha validation
         ]);
 
-
+        $response = $request->input('g-recaptcha-response');
+        $recaptcha = new ReCaptcha(config('recaptcha.secret_key'));
+        $result = $recaptcha->verify($response, $request->ip());
+   
+        if (!$result->isSuccess()) {
+            // Handle reCAPTCHA validation error
+      
         //// remove this comment when website is live not on local server
         // if ($validator->fails()) {
         //     return redirect()->Back()->withInput()->withErrors($validator);
@@ -116,7 +124,7 @@ class topUpController extends Controller
                 Alert::warning("Wranning", "phone number not matches");
                 return redirect('/');
             }
-
+        }
         //  }else{
         //    Alert::warning("sucesss", "phone number not matches");
         //  }

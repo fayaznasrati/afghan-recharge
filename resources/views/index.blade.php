@@ -102,15 +102,14 @@
 									  </div>
                                     @endforeach
 
-									  <div class="notBoot"
-                                      style="width:300px; height:70px; background-color:lightgray; padding:20px">
-										  Google reCaptcha v2
-                                        {{-- {!! htmlFormSnippet() !!}
-                                        @if($errors->has('g-recaptcha-response'))
-                                        <div>
-                                            <small class="text-danger">{{ $errors->first('g-recaptcha-response') }}</small>
-                                        </div>
-                                        @endif --}}
+									  <div class="notBoot">
+                                      {{-- style="width:300px; height:70px; background-color:lightgray; padding:20px">
+										  Google reCaptcha v2 --}}
+                                        {{-- {!! htmlFormSnippet() !!} --}}
+										<div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
+										@if ($errors->has('g-recaptcha-response'))
+										<span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+									    @endif
 									  </div><br>
 									<div class="col-lg-12 col-md-12">
 										<button type="submit"  id="submitBtn" onclick="checkFields()" class="default-btn btn-sm">{{__('lang.Process')}}</button>
