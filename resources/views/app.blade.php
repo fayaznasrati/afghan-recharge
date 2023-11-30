@@ -35,7 +35,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300&display=swap" rel="stylesheet">
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-{{-- {!! htmlScriptTagJsApi() !!} --}}
+{!! htmlScriptTagJsApi() !!}
 </head>
 
 <body >

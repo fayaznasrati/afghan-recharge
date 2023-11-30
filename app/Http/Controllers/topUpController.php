@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use ReCaptcha\ReCaptcha;
-
+use App\Rules\RecaptchaRule;
+use anhskohbo\NoCaptcha\Facades\NoCaptcha;
 
 class topUpController extends Controller
 {
@@ -102,14 +103,18 @@ class topUpController extends Controller
             'amount' => 'required',
             'email' => 'required',
             'phone' => 'required|min:10|max:13',
-            'g-recaptcha-response' => 'recaptcha',//recaptcha validation
+            // 'g-recaptcha-response' => 'recaptcha',//recaptcha validation
+            // 'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'recaptcha',
+            // 'g-recaptcha-response' => ['required', new RecaptchaRule],
         ]);
 
-        $response = $request->input('g-recaptcha-response');
-        $recaptcha = new ReCaptcha( env('RECAPTCHA_SECRET_KEY') );
-        $result = $recaptcha->verify($response, $request->ip());
    
-        if (!$result->isSuccess()) {
+        if ($validator->fails()) {
+            Alert::warning("warning", "warning capture");
+
+            return redirect()->Back()->withInput()->withErrors($validator);
+        }else{
             // Handle reCAPTCHA validation error
       
         //// remove this comment when website is live not on local server

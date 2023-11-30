@@ -106,10 +106,23 @@
                                       {{-- style="width:300px; height:70px; background-color:lightgray; padding:20px">
 										  Google reCaptcha v2 --}}
                                         {{-- {!! htmlFormSnippet() !!} --}}
-										<div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
-										@if ($errors->has('g-recaptcha-response'))
+										{{-- <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div> --}}
+										  {{-- {!! NoCaptcha::renderJs() !!}
+                                         {!! NoCaptcha::display() !!} --}}
+										{{-- @if ($errors->has('g-recaptcha-response'))
 										<span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
-									    @endif
+									    @endif --}}
+
+										   {{-- @error('g-recaptcha-response')
+         <div class="alert alert-danger">{{ $message }}</div> --}}
+     {{-- @enderror --}}
+	   <!-- Google reCaptcha v2 -->
+         {!! htmlFormSnippet() !!}
+         @if($errors->has('g-recaptcha-response'))
+           <div>
+              <small class="text-danger">{{ $errors->first('g-recaptcha-response') }}</small>
+           </div>
+         @endif
 									  </div><br>
 									<div class="col-lg-12 col-md-12">
 										<button type="submit"  id="submitBtn" onclick="checkFields()" class="default-btn btn-sm">{{__('lang.Process')}}</button>
