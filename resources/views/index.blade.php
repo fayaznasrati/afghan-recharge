@@ -106,7 +106,7 @@
                                       {{-- style="width:300px; height:70px; background-color:lightgray; padding:20px">
 										  Google reCaptcha v2 --}}
                                         {{-- {!! htmlFormSnippet() !!} --}}
-										<div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
+										<div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
 										@if ($errors->has('g-recaptcha-response'))
 										<span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
 									    @endif

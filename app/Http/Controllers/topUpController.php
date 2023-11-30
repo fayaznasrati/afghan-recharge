@@ -106,7 +106,7 @@ class topUpController extends Controller
         ]);
 
         $response = $request->input('g-recaptcha-response');
-        $recaptcha = new ReCaptcha(config('recaptcha.secret_key'));
+        $recaptcha = new ReCaptcha( env('RECAPTCHA_SECRET_KEY') );
         $result = $recaptcha->verify($response, $request->ip());
    
         if (!$result->isSuccess()) {
